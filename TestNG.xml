@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<suite name="Herokuapp" verbose="1">
+	<!-- <listeners>
+		<listener class-name="selenium.framework.Listeners" />
+	</listeners>
+	 --><test name="Regression">
+		<classes>
+			<class name="selenium.framework.testSuite.herokuapp.ChallengingDomPage">
+				<methods>
+					<include name="verifyChallengingDomPageUI" /> 
+				<!-- 	<include name="verifyBlueButton"/>
+					<include name="verifyRedButton"/>
+					<include name="verifyGreenButton"/>
+					<include name="verifyContentsOfTable"/>
+					<include name="verifyEditLinkUnderActionColumn"/>
+					<include name="verifyDeleteLinkUnderActionColumn"/>
+					<include name="verifyGreenBannerForkMeOnGitHub"/>
+				 -->	
+				</methods>
+			</class>
+		</classes>
+	</test>
+</suite>

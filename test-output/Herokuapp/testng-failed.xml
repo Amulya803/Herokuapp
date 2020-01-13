@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Failed suite [Herokuapp]">
+  <test thread-count="5" name="Regression(failed)">
+    <classes>
+      <class name="selenium.framework.testSuite.herokuapp.ChallengingDomPage">
+        <methods>
+          <include name="afterSuite"/>
+          <include name="beforeSuite"/>
+          <include name="verifyChallengingDomPageUI"/>
+        </methods>
+      </class> <!-- selenium.framework.testSuite.herokuapp.ChallengingDomPage -->
+    </classes>
+  </test> <!-- Regression(failed) -->
+</suite> <!-- Failed suite [Herokuapp] -->
