@@ -2,8 +2,7 @@ package selenium.framework.objectRepo.herokuapp;
 
 import org.openqa.selenium.By;
 
-public interface ChallengingDomObject {
-    
+public interface ChallengingDomObj {
 	By BUTTON_FIRST = By.xpath("//a[@class='button']");
 	By BUTTON_SECOND = By.xpath("//a[@class='button alert']");
 	By BUTTON_THIRD = By.xpath("//a[@class='button success']");
@@ -35,5 +34,5 @@ public interface ChallengingDomObject {
     public static By deleteLink(int i) {
     	return By.xpath("(//td/a[text()='delete'])["+i+"]");
     }
-    
+
 }

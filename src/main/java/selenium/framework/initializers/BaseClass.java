@@ -38,12 +38,9 @@ public class BaseClass extends ExtentManager{
         driver.navigate().to("https://the-internet.herokuapp.com/challenging_dom");
 		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		extent = ExtentManager.getInstance();
-		/*
-		 * String test =
-		 * method.getAnnotation(org.testng.annotations.Test.class).testName();
-		 */
-	    extent.createTest("CD");
+		
     }
+    
     
     
     @AfterTest(alwaysRun = true) public void afterSuite() { 

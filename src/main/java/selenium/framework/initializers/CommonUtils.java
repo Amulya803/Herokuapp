@@ -22,7 +22,7 @@ public class CommonUtils extends  BaseClass{
     private WebDriverWait wait;
 
     public WebElement getWebElement(By locator){
-        WebElement element= null;
+        WebElement element = null;
         try{
             element=getDriver().findElement(locator);
         }catch (StaleElementReferenceException sere){
@@ -161,7 +161,8 @@ public class CommonUtils extends  BaseClass{
     }
 
     public void verifyElementDisplayed(By locator,String identifier){
-        if (getWebElement(locator).isDisplayed()){
+         WebElement ele = getWebElement(locator);
+    	if (ele.isDisplayed()){
             infoPass(identifier+ " is displayed");
             Assert.assertTrue(true,identifier+" is displayed");
         }else {
