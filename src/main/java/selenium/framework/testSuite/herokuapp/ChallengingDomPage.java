@@ -1,46 +1,44 @@
-package selenium.framework.testSuite.herokuapp;
+package selenium.framework.testsuite.herokuapp;
 
 import static org.testng.Assert.assertEquals;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import org.openqa.selenium.WebDriver;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import selenium.framework.initializers.BaseClass;
 import selenium.framework.initializers.CommonUtils;
 import selenium.framework.initializers.Constants;
-import selenium.framework.objectRepo.herokuapp.ChallengingDomObj;
-import selenium.framework.pageObject.herokuapp.ChallengingDomPageObj;
+import selenium.framework.objectrepo.herokuapp.ChallengingDomObj;
+import selenium.framework.pageobject.herokuapp.ChallengingDomPageObj;
 
 public class ChallengingDomPage extends BaseClass implements Constants {
 
     private CommonUtils utils;
-    private WebDriver driver;
-    private ChallengingDomPageObj challengingDomPage;
+    private ChallengingDomPageObj challengingDom;
 
     @BeforeClass()
     public void init(){
-        driver=getDriver();
         utils=new CommonUtils();
-        challengingDomPage = new ChallengingDomPageObj();
+        challengingDom = new ChallengingDomPageObj();
     }
-        
+
+	String[] expectedTableHeaders = { "Lorem", "Ipsum", "Dolor", "Sit", "Amet", "Diceret", "Action" };
+	
 	@Test(testName = "Verify_Challenging_DOM_Page_UI")
-	public void verifyChallengingDomPageUI() throws Exception {
+	public void verifychallengingDomUI() throws Exception {
 		try {			
 
 			logger = getInstance().createTest("Verify_Challenging_DOM_Page_UI");
 	        
 			// Verify the header text "Challenging DOM" will be displayed in bold
 			utils.verifyElementDisplayed(ChallengingDomObj.HEADER_CHALLENGING_DOM, "Header");
-			utils.getText(ChallengingDomObj.HEADER_CHALLENGING_DOM, "Header Text").equals("Challenging DOM");
+			utils.getText(ChallengingDomObj.HEADER_CHALLENGING_DOM, "Header Text").equals(CHALLENGING_DOM);
 			utils.checkTextIsBold(ChallengingDomObj.HEADER_CHALLENGING_DOM);
 
 			// Verify the paragraph displayed below the 'challenging dom' header
-			utils.verifyTextInElement(ChallengingDomObj.CHALLENGING_DOM_PARA, Constants.CHALLENGING_DOM_PARA);
+			utils.verifyTextInElement(ChallengingDomObj.CHALLENGING_DOM_PARA, Constants.CHALLENGING_DOM_PARA,"Challenging Dom Para");
 
 			// Verify the presence of 3 buttons in the webpage
 			utils.verifyElementDisplayed(ChallengingDomObj.BUTTON_FIRST, BLUE_BUTTON);
@@ -53,17 +51,19 @@ public class ChallengingDomPage extends BaseClass implements Constants {
 			// Verify that the 'edit' and 'delete' links displayed in the 'Action' columns
 			// are hyperlinks.
 			utils.verifyElementDisplayed(ChallengingDomObj.editLink(1), EDIT_LINK);
+			utils.verifyElementIsALink(ChallengingDomObj.editLink(1), EDIT_LINK);
 			utils.verifyElementDisplayed(ChallengingDomObj.deleteLink(1), DELETE_LINK);
-
+			utils.verifyElementIsALink(ChallengingDomObj.deleteLink(1), DELETE_LINK);
+			
 			// Verify the "Answer" label displayed below the table.
 			utils.verifyElementDisplayed(ChallengingDomObj.LABEL_ANSWER, "Answer Display Area");
 
 			// Verify the green banner with text "Fork me on GitHub" is displayed
-			utils.verifyElementDisplayed(ChallengingDomObj.IMAGE_FORK_ME_ON_GITHUB, "Fork me on GitHub Image");
+			utils.verifyElementDisplayed(ChallengingDomObj.IMAGE_FORK_ME_ON_GITHUB, FORK_ME_ON_GIT_HUB);
 
 			// Verify the presence of text "Powered by Elemental Selenium" at the bottom.
-			utils.verifyElementDisplayed(ChallengingDomObj.FOOTER_TEXT, "Powered by Elemental Selenium");
-
+			utils.verifyElementDisplayed(ChallengingDomObj.FOOTER_TEXT, POWERED_BY_ELEMENTAL_SELENIUM);
+			utils.verifyElementIsALink(ChallengingDomObj.LINK_ELEMENTAL_SELENIUM,ELEMENTAL_SELENIUM);
 		} catch (Exception e) {
 			throw new Exception();
 		}
@@ -81,14 +81,14 @@ public class ChallengingDomPage extends BaseClass implements Constants {
 
 			// Verify the text inside the Blue button
 			String buttonText = utils.getText(ChallengingDomObj.BUTTON_FIRST, BLUE_BUTTON);
-			utils.verifyListContainsText(challengingDomPage.expectedButtonValues(), buttonText);
+			utils.verifyListContainsText(challengingDom.expectedButtonValues(), buttonText);
 
 			// Click on the blue button.
 			utils.clickElement(ChallengingDomObj.BUTTON_FIRST, BLUE_BUTTON);
 
 			// Verify the text inside the Blue button
 			buttonText = utils.getText(ChallengingDomObj.BUTTON_FIRST, BLUE_BUTTON);
-			utils.verifyListContainsText(challengingDomPage.expectedButtonValues(), buttonText);
+			utils.verifyListContainsText(challengingDom.expectedButtonValues(), buttonText);
 
 		} catch (Exception e) {
 			throw new Exception();
@@ -106,14 +106,14 @@ public class ChallengingDomPage extends BaseClass implements Constants {
 
 			// Verify the text inside the Red button
 			String buttonText = utils.getText(ChallengingDomObj.BUTTON_SECOND, RED_BUTTON);
-			utils.verifyListContainsText(challengingDomPage.expectedButtonValues(), buttonText);
+			utils.verifyListContainsText(challengingDom.expectedButtonValues(), buttonText);
 
 			// Click on the red button.
 			utils.clickElement(ChallengingDomObj.BUTTON_SECOND, RED_BUTTON);
 
 			// Verify the text inside the Red button
 			buttonText = utils.getText(ChallengingDomObj.BUTTON_SECOND, RED_BUTTON);
-			utils.verifyListContainsText(challengingDomPage.expectedButtonValues(), buttonText);
+			utils.verifyListContainsText(challengingDom.expectedButtonValues(), buttonText);
 
 		} catch (Exception e) {
 			throw new Exception();
@@ -131,14 +131,14 @@ public class ChallengingDomPage extends BaseClass implements Constants {
 			
 			// Verify the text inside the Green button
 			String buttonText = utils.getText(ChallengingDomObj.BUTTON_THIRD, GREEN_BUTTON);
-			utils.verifyListContainsText(challengingDomPage.expectedButtonValues(), buttonText);
+			utils.verifyListContainsText(challengingDom.expectedButtonValues(), buttonText);
 
 			// Click on the Green button.
 			utils.clickElement(ChallengingDomObj.BUTTON_THIRD, GREEN_BUTTON);
 
 			// Verify the text inside the Green button
 			buttonText = utils.getText(ChallengingDomObj.BUTTON_THIRD, GREEN_BUTTON);
-			utils.verifyListContainsText(challengingDomPage.expectedButtonValues(), buttonText);
+			utils.verifyListContainsText(challengingDom.expectedButtonValues(), buttonText);
 
 		} catch (Exception e) {
 			throw new Exception();
@@ -153,13 +153,13 @@ public class ChallengingDomPage extends BaseClass implements Constants {
 			   
 			// Verify the table headers.
 			 List<String> headers = utils.getColumnText(ChallengingDomObj.TABLE_HEADERS);
-			 assertEquals(headers.toArray(), EXPECTED_TABLE_HEADERS);
+			 assertEquals(headers.toArray(), expectedTableHeaders);
 			 utils.infoPass("Table Headers are: "+headers);
 			
 			// Verify the values displayed under all the columns
 			//Lorem Ipsum Dolor Sit Amet Diceret
-            for(int i=0;i<EXPECTED_TABLE_HEADERS.length-1;i++)
-			challengingDomPage.verifyColumnText(EXPECTED_TABLE_HEADERS[i],i);
+            for(int i=0;i<expectedTableHeaders.length-1;i++)
+			challengingDom.verifyColumnText(expectedTableHeaders[i],i);
           
             //Verify the values displayed under Action column
             List<String> editLinks = utils.getColumnText(ChallengingDomObj.LINKS_EDIT);
@@ -226,81 +226,17 @@ public class ChallengingDomPage extends BaseClass implements Constants {
 		}
 	}
 
-	@Test(testName = "Verify_the_number_displayed_next_to_Answer_label")
-	public void verifyNumDisplayedInAnswerLabel() throws Exception {
-		try {
-			
-			logger = getInstance().createTest("Verify_the_number_displayed_next_to_Answer_label");
-			
-			// Verify the value displayed the text display area below the table
-			utils.verifyElementDisplayed(ChallengingDomObj.LABEL_ANSWER, "Answer Display Area");
-			String answerDisplayed = utils.getAttributeValue(ChallengingDomObj.XYZ, "canvas.strokeText");
-		
-			//String answerDisplayed = utils.getText(ChallengingDomObj.LABEL_ANSWER, "Answer Value");
-
-			// Click on the blue button.
-            utils.clickElement(ChallengingDomObj.BUTTON_FIRST, "First Button");
-			
-			// Verify the value displayed the text display area below the table
-            String answerDisplayedFirstButton = utils.getText(ChallengingDomObj.LABEL_ANSWER, "Answer Value");
-            utils.stringNotEqualsTo(answerDisplayedFirstButton, answerDisplayed); 
-            
-			// Click on the red button
-            utils.clickElement(ChallengingDomObj.BUTTON_SECOND, "Second Button");
-            
-			// Verify the value displayed the text display area below the table
-            String answerDisplayedSecondButton = utils.getText(ChallengingDomObj.LABEL_ANSWER, "Answer Value");
-            utils.stringNotEqualsTo(answerDisplayedSecondButton, answerDisplayedFirstButton); 
-            
-			// Click on the green button
-            utils.clickElement(ChallengingDomObj.BUTTON_THIRD, "Third Button");
-            
-			// Verify the value displayed the text display area below the table
-            String answerDisplayedThirdButton = utils.getText(ChallengingDomObj.LABEL_ANSWER, "Answer Value");
-            utils.stringNotEqualsTo(answerDisplayedThirdButton, answerDisplayedSecondButton); 
-		} catch (Exception e) {
-			throw new Exception();
-		}
-	}
-
-	@Test(testName = "Verify_random_number_generated.")
-	public void verifyRandomNumberGenerated() throws Exception {
-		try {
-			
-			extent.createTest("Verify_random_number_generated");
-			   
-			List<String> answerValues = new ArrayList<>();
-			// Verify the value displayed the text display area below the table
-
-			// Click on the any button
-			utils.clickElement(ChallengingDomObj.BUTTON_FIRST, "First Button");
-			
-			// Verify the value displayed the text display area below the table
-
-			// Repeat the above 2 steps for 10 iteration and note all the values generated.
-            for(int i=0;i<=10;i++) {
-            	 utils.clickElement(ChallengingDomObj.BUTTON_THIRD, "Third Button");
-            	 answerValues.add("");
-            }
-			
-			// Check if any alphanumeric value is displayed.
-
-		} catch (Exception e) {
-			throw new Exception();
-		}
-	}
-
 	@Test(testName = "Verify_green_banner_Fork_me_on_GitHub")
 	public void verifyGreenBannerForkMeOnGitHub() throws Exception {
 		try {
 			
-			extent.createTest("Verify_green_banner_Fork_me_on_GitHub");
+			logger = extent.createTest("Verify_green_banner_Fork_me_on_GitHub");
 			
 			// Verify the green banner with text "Fork me on GitHub"
-			utils.verifyElementDisplayed(ChallengingDomObj.IMAGE_FORK_ME_ON_GITHUB, "Fork me on GitHub Image");
+			utils.verifyElementDisplayed(ChallengingDomObj.IMAGE_FORK_ME_ON_GITHUB, FORK_ME_ON_GIT_HUB);
 
 			// Click on the banner "Fork me on GitHub"
-            utils.clickElement(ChallengingDomObj.IMAGE_FORK_ME_ON_GITHUB, "Fork mess on GitHub Image");
+            utils.clickElement(ChallengingDomObj.IMAGE_FORK_ME_ON_GITHUB, FORK_ME_ON_GIT_HUB);
             utils.verifyUrl(GIT_HUB_URL);
             
 		} catch (Exception e) {
@@ -311,23 +247,24 @@ public class ChallengingDomPage extends BaseClass implements Constants {
 	@Test(testName = "Verify_text_Powered_by_Elemental_Selenium")
 	public void verifyPoweredByElementalSelenium() throws Exception {
 		try {
-			extent.createTest("Verify_text_Powered_by_Elemental_Selenium");
-			WebDriver driver = getDriver();
+			logger = extent.createTest("Verify_text_Powered_by_Elemental_Selenium");
+			String mainTab = driver.getWindowHandle();
 		
 			// Verify the text "Powered By Elemental Selenium"
-			utils.verifyElementDisplayed(ChallengingDomObj.FOOTER_TEXT, "Powered by Elemental Selenium");
+			utils.verifyElementDisplayed(ChallengingDomObj.FOOTER_TEXT, POWERED_BY_ELEMENTAL_SELENIUM);
 			
 			// Verify that "Elemental Selenium" is a hyperlink.
-            utils.verifyElementDisplayed(ChallengingDomObj.LINK_ELEMENTAL_SELENIUM, "Elemental Selenium");
+            utils.verifyElementDisplayed(ChallengingDomObj.LINK_ELEMENTAL_SELENIUM, ELEMENTAL_SELENIUM);
             
 			// Click on "Elemental Selenium" link.
-            utils.clickElement(ChallengingDomObj.LINK_ELEMENTAL_SELENIUM, "Elemental Selenium");
-            String childWindow = driver.getWindowHandle();
-            utils.switchToWindow(childWindow);
+            utils.clickElement(ChallengingDomObj.LINK_ELEMENTAL_SELENIUM, ELEMENTAL_SELENIUM);
+           
+            utils.switchToNewTab(mainTab);
             utils.verifyUrl(ELEMENTAL_SELENIUM_URL);
             
 			// Close the new window.
             utils.closeWindow();
+            utils.switchToWindow(mainTab);
 		} catch (Exception e) {
 			throw new Exception();
 		}

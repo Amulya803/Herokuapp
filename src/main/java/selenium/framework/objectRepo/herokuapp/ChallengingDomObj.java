@@ -1,8 +1,9 @@
-package selenium.framework.objectRepo.herokuapp;
+package selenium.framework.objectrepo.herokuapp;
 
 import org.openqa.selenium.By;
 
 public interface ChallengingDomObj {
+	
 	By BUTTON_FIRST = By.xpath("//a[@class='button']");
 	By BUTTON_SECOND = By.xpath("//a[@class='button alert']");
 	By BUTTON_THIRD = By.xpath("//a[@class='button success']");

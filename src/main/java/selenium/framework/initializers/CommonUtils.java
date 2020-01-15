@@ -8,7 +8,6 @@ import java.util.List;
 import org.openqa.selenium.By;
 import org.openqa.selenium.ElementNotInteractableException;
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebElement;
@@ -18,262 +17,328 @@ import org.testng.Assert;
 
 import com.aventstack.extentreports.Status;
 
-public class CommonUtils extends  BaseClass{
-    private WebDriverWait wait;
+public class CommonUtils extends BaseClass {
+	private WebDriverWait wait;
 
-    public WebElement getWebElement(By locator){
-        WebElement element = null;
-        try{
-            element=getDriver().findElement(locator);
-        }catch (StaleElementReferenceException sere){
-            waitUntilVisibilityOfElement(locator);
-            element=getDriver().findElement(locator);
-        }catch (NoSuchElementException nsee){
-            System.out.println("Please check your locator :"+nsee);
-            infoFail("Please check your locator :"+nsee);
-        }catch (Exception e){
-            System.out.println("exception is"+e);
-            infoFail("exception is"+e);
-        }
-        return element;
-    }
+	/**
+	 * @implNote this method is written to find the webElement.
+	 * @param locator
+	 * @return WebElement
+	 */
+	public WebElement getWebElement(By locator) {
+		WebElement element = null;
+		try {
+			element = getDriver().findElement(locator);
+		} catch (StaleElementReferenceException sere) {
+			waitUntilVisibilityOfElement(locator);
+			element = getDriver().findElement(locator);
+		} catch (NoSuchElementException nsee) {
+			infoFail("Please check your locator:" + nsee);
+		} catch (Exception e) {
+			infoFail("Exception is" + e);
+		}
+		return element;
+	}
 
-    public List<WebElement> getWebElements(By locator){
-        List<WebElement> element= null;
-        try{
-            element=getDriver().findElements(locator);
-        }catch (StaleElementReferenceException sere){
-            waitUntilVisibilityOfElement(locator);
-            element=getDriver().findElements(locator);
-        }catch (NoSuchElementException nsee){
-            System.out.println("Please check your locator :"+nsee);
-            infoFail("Please check your locator :"+nsee);
-        }catch (Exception e){
-            System.out.println("exception is"+e);
-            infoFail("exception is"+e);
-        }
-        return element;
-    }
+	/**
+	 * @implNote this method is written to get all web elements.
+	 * @param locator
+	 * @return List<WebElement
+	 */
+	public List<WebElement> getWebElements(By locator) {
+		List<WebElement> element = null;
+		try {
+			element = getDriver().findElements(locator);
+		} catch (StaleElementReferenceException sere) {
+			waitUntilVisibilityOfElement(locator);
+			element = getDriver().findElements(locator);
+		} catch (NoSuchElementException nsee) {
+			infoFail("Please check your locator :" + nsee);
+		} catch (Exception e) {
+			infoFail("exception is" + e);
+		}
+		return element;
+	}
 
-    public List<String> getColumnText(By locator){
-    	List<WebElement> element = null;
-    	List<String> columnText = new ArrayList<>();
-    	try {
-    		 element=getDriver().findElements(locator);
-    		 for(WebElement ele:element) {
-    			 String text = ele.getText();
-    			 columnText.add(text);
-    		 }
-    	}catch (StaleElementReferenceException sere){
-            waitUntilVisibilityOfElement(locator);
-        }catch (NoSuchElementException nsee){
-            System.out.println("Please check your locator :"+nsee);
-            infoFail("Please check your locator :"+nsee);
-        }catch (Exception e){
-            System.out.println("exception is"+e);
-            infoFail("exception is"+e);
-        }
-        return columnText;
-    }
+	/**
+	 * @implNote this method is written to get text from all the columns.
+	 * @param locator
+	 * @return List<String>
+	 */
+	public List<String> getColumnText(By locator) {
+		List<WebElement> element = null;
+		List<String> columnText = new ArrayList<>();
+		try {
+			element = getDriver().findElements(locator);
+			for (WebElement ele : element) {
+				String text = ele.getText();
+				columnText.add(text);
+			}
+		} catch (StaleElementReferenceException sere) {
+			waitUntilVisibilityOfElement(locator);
+		} catch (NoSuchElementException nsee) {
+			infoFail("Please check your locator :" + nsee);
+		} catch (Exception e) {
+			infoFail("exception is" + e);
+		}
+		return columnText;
+	}
 
-      
-    /**
-     * To click an element
-     * @param locator xpath
-     */
-    public void clickElement(By locator,String identifier) {
-        try{
-            getWebElement(locator).click();
-            infoPass(identifier+" is clicked");
-        }catch (ElementNotInteractableException enie){
-            JavascriptExecutor js=(JavascriptExecutor) getDriver();
-            js.executeScript("arguments[0].click();", getWebElement(locator));
-        }
-    }
+	/**
+	 * @implNote this method is written to click element
+	 * @param locator
+	 * @param identifier
+	 */
+	public void clickElement(By locator, String identifier) {
+		try {
+			getWebElement(locator).click();
+			infoPass(identifier + " is clicked");
+		} catch (ElementNotInteractableException enie) {
+			JavascriptExecutor js = (JavascriptExecutor) getDriver();
+			js.executeScript("arguments[0].click();", getWebElement(locator));
+		}
+	}
 
- 
-    /**
-     * To read a static element
-     * @param locator xpath
-     * @return String
-     */
-    public String getText(By locator,String identifier) {
-        String eleText=getWebElement(locator).getText();
-        infoPass(identifier+" text is "+eleText);
-        return eleText;
-    }
+	/**
+	 * @implNote this method is written to get text from a element
+	 * @param locator
+	 * @param identifier
+	 * @return String
+	 */
+	public String getText(By locator, String identifier) {
+		String eleText = getWebElement(locator).getText();
+		infoPass(identifier + " text is " + eleText);
+		return eleText;
+	}
 
-    
-    public void infoPass(String comments){
-        logger.log(Status.PASS, comments);
-    }
+	/**
+	 * @implNote this method is written to check if element is displayed
+	 * @param locator
+	 * @return Boolean
+	 */
+	public boolean isElementDisplayed(By locator) {
+		try {
+			getDriver().findElement(locator);
+			return true;
+		} catch (NoSuchElementException nsee) {
+			return false;
+		}
+	}
 
-    public void infoFail(String comments){
-        logger.log(Status.FAIL, comments);
-    }
+	/**
+	 * @implNote this method is written to switch to new window when multiple
+	 *           windows are open
+	 * @param mainWindow
+	 */
+	public void switchToNewTab(String mainWindow) {
+		for (String childWindow : getDriver().getWindowHandles()) {
+			if (!childWindow.equals(mainWindow))
+				switchToWindow(childWindow);
+		}
+	}
 
-    public boolean isElementDisplayed(By locator){
-        try{
-            getDriver().findElement(locator);
-            return true;
-        }catch (NoSuchElementException nsee){
-            return  false;
-        }
-    }
+	/**
+	 * @implNote this method is written to switch to new window
+	 * @param window
+	 */
+	public void switchToWindow(String window) {
+		getDriver().switchTo().window(window);
+		infoPass("Switch to window " + getDriver().getTitle());
+	}
 
-    public List<String> getElementsText(By locator) {
-        List<WebElement> allElements=getAllWebElement(locator);
-        List<String> allText=new ArrayList<>();
-        for (WebElement eachElement:allElements){
-            allText.add(eachElement.getText());
-        }
-        infoPass(locator+" element texts are "+allText);
-        return allText;
-    }
+	/**
+	 * @implNote this method is written to close the active window
+	 */
+	public void closeWindow() {
+		getDriver().close();
+	}
 
+	/**
+	 * @implNote this method is written to verify element is displayed
+	 * @param locator
+	 * @param identifier
+	 */
+	public void verifyElementDisplayed(By locator, String identifier) {
+		WebElement ele = getWebElement(locator);
+		if (ele.isDisplayed()) {
+			infoPass(identifier + " is displayed");
+			Assert.assertTrue(true, identifier + " is displayed");
+		} else {
+			infoFail(locator + " is not displayed");
+			Assert.assertTrue(false, identifier + " is not displayed");
+		}
+	}
 
-    public List<WebElement> getAllWebElement(By locator){
-        wait=new WebDriverWait(getDriver(),120);
-        List<WebElement> allElements=new ArrayList<>();
-        try{
-            allElements=wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(locator));
-        }catch (StaleElementReferenceException sere){
-            allElements=wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(locator));
-        }
-        infoPass("waiting for element to be visible "+locator);
-        return allElements;
-    }
+	/**
+	 * @implNote this method is written to verify the color of the element
+	 * @param locator
+	 * @param expectedColorHexadecimal
+	 */
+	public void verifyColor(By locator, String expectedColorHexadecimal) {
+		String actualColor = getWebElement(locator).getCssValue("color");
+		Assert.assertEquals(expectedColorHexadecimal, actualColor, "Color is matching");
+		infoPass("color is matching expected: " + expectedColorHexadecimal + " actual color: " + actualColor);
+	}
 
-    public void switchToNewTab(String mainWindow){
-        for(String childWindow : getDriver().getWindowHandles()){
-            if(!childWindow.equals(mainWindow))
-                switchToWindow(childWindow);
-        }
-    }
+	/**
+	 * @implNote this method is written to verify the background color of the
+	 *           element
+	 * @param locator
+	 * @param expectedColorHexadecimal
+	 * @param identifier
+	 */
+	public void verifyBackGroundColor(By locator, String expectedColorHexadecimal, String identifier) {
+		String actualColor = getWebElement(locator).getCssValue("background-color");
+		Assert.assertEquals(expectedColorHexadecimal, actualColor, "Color is matching");
+		infoPass(identifier + " background color " + actualColor + " matching with the expected color "
+				+ expectedColorHexadecimal);
+	}
 
-    public void switchToWindow(String window){
-        getDriver().switchTo().window(window);
-        infoPass("Switch to window "+getDriver().getTitle());
-    }
+	/**
+	 * @implNote this method is written to verify the URL of the driver.
+	 * @param expectedUrl
+	 */
+	public void verifyUrl(String expectedUrl) {
+		String actualUrl = getDriver().getCurrentUrl();
+		if (expectedUrl.equals(actualUrl)) {
+			infoPass("Expected URL " + expectedUrl + " is matching with actual " + actualUrl);
+			Assert.assertTrue(true, "expected " + expectedUrl + " is matching with actual " + actualUrl);
+		} else {
+			infoFail("Expected URL " + expectedUrl + " is not matching with actual " + actualUrl);
+			Assert.assertTrue(false, "expected " + expectedUrl + " is not matching with actual " + actualUrl);
+		}
+		Assert.assertEquals(expectedUrl, actualUrl, "URL is matching");
+	}
 
-    public void closeWindow(){
-        getDriver().close();
-    }
+	/**
+	 * @implNote this method is written to wait
+	 * @param seconds
+	 */
+	public void waitThread(long seconds) {
+		long startTime = System.currentTimeMillis() / 1000;
+		long endTime = startTime + seconds;
+		do {
+			System.out.println("wait explicit....");
+		} while (endTime >= System.currentTimeMillis() / 1000);
+	}
 
-    public void verifyElementDisplayed(By locator,String identifier){
-         WebElement ele = getWebElement(locator);
-    	if (ele.isDisplayed()){
-            infoPass(identifier+ " is displayed");
-            Assert.assertTrue(true,identifier+" is displayed");
-        }else {
-            infoFail(locator+ " is not displayed");
-            Assert.assertTrue(false,identifier+" is not displayed");
-        }
-    }
+	/**
+	 * @implNote this method is written to check if text is in bold
+	 * @param locator
+	 * @return Boolean
+	 * @throws Exception
+	 */
+	public Boolean checkTextIsBold(By locator) {
+		try {
+			boolean isBold = false;
+			String actualStyle = getWebElement(locator).getAttribute("style");
+			if (actualStyle.equals("bold"))
+				isBold = true;
 
-    public void pressTABKey(By locator) {
-        getWebElement(locator).sendKeys(Keys.TAB);
-        infoPass("TAB key is clicked");
-    }
+			return isBold;
+		} catch (NoSuchElementException nsee) {
+			return false;
+		}
+	}
 
-    /**
-     * To enter value in text box
-     * @param locator xpath
-     * @param expectedColorHexadecimal text to enter
-     */
-    public void verifyColor(By locator, String expectedColorHexadecimal) {
-        String actualColor=getWebElement(locator).getCssValue("color");
-        Assert.assertEquals(expectedColorHexadecimal,actualColor,"Color is matching");
-        infoPass("color is matching expected: "+expectedColorHexadecimal+" actual color: "+actualColor);
-    }
+	/**
+	 * @implNote this method is written to verify that list contains the specified
+	 *           text
+	 * @param list
+	 * @param valueToSearch
+	 */
+	public void verifyListContainsText(List<String> list, String valueToSearch) {
+		if (list.contains(valueToSearch))
+			infoPass(list + "contains " + valueToSearch);
+		else
+			infoFail(list + "does not contain " + valueToSearch);
 
-    public void verifyBackGroundColor(By locator, String expectedColorHexadecimal,String identifier) {
-        String actualColor=getWebElement(locator).getCssValue("background-color");
-        Assert.assertEquals(expectedColorHexadecimal,actualColor,"Color is matching");
-        infoPass(identifier+" background color "+actualColor+" matching with the expected color "+expectedColorHexadecimal);
-    }
+	}
 
- 
-    public void verifyUrl(String expectedUrl){
-       String actualUrl=getDriver().getCurrentUrl();
-       if(expectedUrl.equals(actualUrl)){
-           infoPass("expected "+expectedUrl+" is matching with actual "+actualUrl);
-           Assert.assertTrue(true,"expected "+expectedUrl+" is matching with actual "+actualUrl);
-       }else{
-           infoFail("expected "+expectedUrl+" is not matching with actual "+actualUrl);
-           Assert.assertTrue(false,"expected "+expectedUrl+" is not matching with actual "+actualUrl);
-       }
-       Assert.assertEquals(expectedUrl,actualUrl,"URL is matching");
-    }
+	/**
+	 * @implNote this method is written to verify all the list values is equal to
+	 *           the specified value
+	 * @param list
+	 * @param value
+	 */
+	public void verifyAllListValueIsEqualToText(List<String> list, String value) {
+		List<String> listContains = new ArrayList<>();
+		List<String> listNotContains = new ArrayList<>();
+		for (String eachValue : list) {
+			if (eachValue.equals(value))
+				listContains.add(value);
+			else
+				listNotContains.add(value);
+		}
+		if (listNotContains.isEmpty())
+			infoPass(list + "is equal to " + value);
+		else
+			infoFail(list + "is not equal to " + value);		
+	}
 
-    public void waitThread(long seconds){
-        long startTime= System.currentTimeMillis()/1000;
-        long endTime=startTime+seconds;
-        do{
-            System.out.println("wait explicit....");
-        }while(endTime>=System.currentTimeMillis()/1000);
-    }
-    
-    public Boolean checkTextIsBold(By locator) throws Exception{
-    	try {
-    		boolean isBold= false;
-    		String actualStyle=getWebElement(locator).getAttribute("style");
-    		if(actualStyle.equals("bold"))
-    		isBold=true;
-    			
-         return isBold;
-    	}catch (NoSuchElementException nsee){
-            return  false;
-        }
-    }
+	/**
+	 * @implNote this method is written to verify two strings are not equal
+	 * @param actual
+	 * @param expected
+	 */
+	public void stringNotEqualsTo(String actual, String expected) {
+		if (actual.equals(expected))
+			infoFail(actual + " value is still the same as " + expected);
+		else
+			infoPass(actual + " value is not the same as " + expected);
+	}
 
-    public void verifyListContainsText(List<String> list,String valueToSearch) {
-      if(list.contains(valueToSearch)) 
-    	  infoPass(list+ "contains "+ valueToSearch);
-      else
-    	  infoFail(list+ "does not contain "+ valueToSearch);
-    	  
-    }
-    
-    public void verifyAllListValueIsEqualToText(List<String> list,String value) {
-        List<String> listContains= new ArrayList<String>();
-        List<String> listNotContains = new ArrayList<String>();
-    	for(String eachValue:list) {
-    		if(eachValue.equals(value))
-    			listContains.add(value);
-    		else
-    			listNotContains.add(value);
-    	}
-    	if(listNotContains.size()>0)
-    		 infoFail(list+ "is not equal to "+value);
-    	else
-      	  infoPass(list+ "is equal to "+ value);    	  
-      }
-    
-    public void stringNotEqualsTo(String actual,String expected) {
-    	  if(actual.equals(expected))
-          	infoFail(actual+" value is still the same as "+expected);
-    	  else
-    		  infoPass(actual+" value is not the same as "+expected);
-    }
-    
-    public String getAttributeValue(By locator,String attributeName) {
-    	String attributeValue = getWebElement(locator).getCssValue(attributeName);
-    	return attributeValue;
-    }
-    
-    public void waitUntilVisibilityOfElement(By locator){
-        wait=new WebDriverWait(getDriver(),60);
-        wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
-        infoPass("waiting for element to be visible "+locator);
-    }
-    
-    public void verifyTextInElement(By locator,String expectedText) {
-        String eleText=getWebElement(locator).getText();
-        assertEquals(eleText, expectedText);
-        infoPass(locator+" element text is "+eleText);
-        
-    }
-   
+	/**
+	 * @implNote this method is written to get the attribute value
+	 * @param locator
+	 * @param attributeName
+	 * @return String
+	 */
+	public String getAttributeValue(By locator, String attributeName) {
+		return getWebElement(locator).getCssValue(attributeName);
+	}
+
+	/**
+	 * @implNote this method is written to wait until the element is visible
+	 * @param locator
+	 */
+	public void waitUntilVisibilityOfElement(By locator) {
+		wait = new WebDriverWait(getDriver(), 60);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+		infoPass("waiting for element to be visible " + locator);
+	}
+
+	/**
+	 * @implNote this method is written to verify the text in specific element
+	 * @param locator
+	 * @param expectedText
+	 */
+	public void verifyTextInElement(By locator, String expectedText,String identifier) {
+		String eleText = getWebElement(locator).getText();
+		assertEquals(eleText, expectedText);
+		infoPass(identifier + " text is " + eleText);
+
+	}
+
+	/**
+	 * @implNote this method is written to verify element is a link
+	 * @param locator
+	 * @param identifier
+	 */
+	public void verifyElementIsALink(By locator,String identifier) {
+	  WebElement ele = getWebElement(locator);
+	  if(ele.getTagName().equals("a"))
+		  infoPass(identifier+ " is a link");
+	  else
+		  infoFail(identifier+ " is not a link");
+	}
+	
+	public void infoPass(String comments) {
+		logger.log(Status.PASS, comments);
+	}
+
+	public void infoFail(String comments) {
+		logger.log(Status.FAIL, comments);
+	}
 
 }

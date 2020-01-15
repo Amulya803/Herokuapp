@@ -2,8 +2,6 @@ package selenium.framework.initializers;
 
 public interface Constants {
 
-	String[] EXPECTED_TABLE_HEADERS = { "Lorem", "Ipsum", "Dolor", "Sit", "Amet", "Diceret", "Action" };
-	String[] EXPECTED_COLUMN_VALUES = { "Iuvaret", "Apeirian", "Adipisci", "Definiebas", "Consequuntur", "Phaedrum" };
 	String CHALLENGING_DOM_PARA = "The hardest part in automated web testing is finding the best locators (e.g., ones that well named, unique, and unlikely to change). It's more often than not that the application you're testing was not built with this concept in mind. This example demonstrates that with unique IDs, a table with no helpful locators, and a canvas element.";
 	String BLUE_BUTTON_RGB = "rgba(43, 166, 203, 1)";
 	String RED_BUTTON_RGB = "rgba(198, 15, 19, 1)";
@@ -20,4 +18,8 @@ public interface Constants {
 	String DELETE_LINK = "Delete Link";
     String GIT_HUB_URL = "https://github.com/tourdedave/the-internet";
     String ELEMENTAL_SELENIUM_URL = "http://elementalselenium.com/";
+    String FORK_ME_ON_GIT_HUB = "Fork me on Git Hub";
+    String ELEMENTAL_SELENIUM = "Elemental Selenium";
+    String CHALLENGING_DOM = "Challenging DOM";
+    String POWERED_BY_ELEMENTAL_SELENIUM = "Powered by Elemental Selenium";
 }

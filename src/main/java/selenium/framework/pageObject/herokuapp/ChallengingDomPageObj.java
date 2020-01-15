@@ -1,4 +1,4 @@
-package selenium.framework.pageObject.herokuapp;
+package selenium.framework.pageobject.herokuapp;
 
 import static org.testng.Assert.assertEquals;
 
@@ -10,7 +10,7 @@ import org.openqa.selenium.WebElement;
 import selenium.framework.initializers.BaseClass;
 import selenium.framework.initializers.CommonUtils;
 import selenium.framework.initializers.Constants;
-import selenium.framework.objectRepo.herokuapp.ChallengingDomObj;
+import selenium.framework.objectrepo.herokuapp.ChallengingDomObj;
 
 public class ChallengingDomPageObj extends BaseClass implements Constants {
 
@@ -18,16 +18,18 @@ public class ChallengingDomPageObj extends BaseClass implements Constants {
 
 	public ChallengingDomPageObj() {
 		utils = new CommonUtils();
-
 	}
-
+	
+	String[] expectedTableHeaders = { "Lorem", "Ipsum", "Dolor", "Sit", "Amet", "Diceret", "Action" };
+	String[] expectedColumnValues = { "Iuvaret", "Apeirian", "Adipisci", "Definiebas", "Consequuntur", "Phaedrum" };
+	
 	public void verifyColumnText(String columnName, int colNum) {
-		List<String> columnValues = new ArrayList<>();
+		List<String> columnValues;
 		List<String> actualRowValue = new ArrayList<>();
 		List<WebElement> allValues = utils.getWebElements(ChallengingDomObj.eachColumnValue(columnName));
 		columnValues = utils.getColumnText(ChallengingDomObj.eachColumnValue(columnName));
 		for (int i = 0; i < allValues.size(); i++)
-			actualRowValue.add(EXPECTED_COLUMN_VALUES[colNum].concat(String.valueOf(i)));
+			actualRowValue.add(expectedColumnValues[colNum].concat(String.valueOf(i)));
 		assertEquals(actualRowValue, columnValues, "Columns Values should in ascending order");
 		utils.infoPass(columnName + " values are " + actualRowValue);
 

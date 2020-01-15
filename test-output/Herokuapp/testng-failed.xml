@@ -6,13 +6,16 @@
   </listeners>
   <test thread-count="5" name="Regression(failed)">
     <classes>
-      <class name="selenium.framework.testSuite.herokuapp.ChallengingDomPage">
+      <class name="selenium.framework.testsuite.herokuapp.ChallengingDomPage">
         <methods>
-          <include name="afterSuite"/>
           <include name="beforeSuite"/>
-          <include name="verifyChallengingDomPageUI"/>
+          <include name="init"/>
+          <include name="afterTest"/>
+          <include name="verifychallengingDomUI"/>
+          <include name="beforeMethod"/>
+          <include name="verifyRedButton"/>
         </methods>
-      </class> <!-- selenium.framework.testSuite.herokuapp.ChallengingDomPage -->
+      </class> <!-- selenium.framework.testsuite.herokuapp.ChallengingDomPage -->
     </classes>
   </test> <!-- Regression(failed) -->
 </suite> <!-- Failed suite [Herokuapp] -->
