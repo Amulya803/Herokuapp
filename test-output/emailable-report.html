@@ -9,18 +9,20 @@
 <table>
 <tr><th>Test</th><th># Passed</th><th># Skipped</th><th># Failed</th><th>Time (ms)</th><th>Included Groups</th><th>Excluded Groups</th></tr>
 <tr><th colspan="7">Herokuapp</th></tr>
-<tr><td><a href="#t0">Regression</a></td><td class="num">9</td><td class="num">0</td><td class="num">0</td><td class="num">35,538</td><td></td><td></td></tr>
+<tr><td><a href="#t0">Regression</a></td><td class="num">0</td><td class="num">0</td><td class="num attn">1</td><td class="num">17,508</td><td></td><td></td></tr>
 </table>
-<table id='summary'><thead><tr><th>Class</th><th>Method</th><th>Start</th><th>Time (ms)</th></tr></thead><tbody><tr><th colspan="4">Herokuapp</th></tr></tbody><tbody id="t0"><tr><th colspan="4">Regression &#8212; passed</th></tr><tr class="passedeven"><td rowspan="9">selenium.framework.testsuite.herokuapp.ChallengingDomPage</td><td><a href="#m0">verifyBlueButton</a></td><td rowspan="1">1579065675097</td><td rowspan="1">956</td></tr><tr class="passedeven"><td><a href="#m1">verifyContentsOfTable</a></td><td rowspan="1">1579065676632</td><td rowspan="1">4046</td></tr><tr class="passedeven"><td><a href="#m2">verifyDeleteLinkUnderActionColumn</a></td><td rowspan="1">1579065681414</td><td rowspan="1">1781</td></tr><tr class="passedeven"><td><a href="#m3">verifyEditLinkUnderActionColumn</a></td><td rowspan="1">1579065684064</td><td rowspan="1">1724</td></tr><tr class="passedeven"><td><a href="#m4">verifyGreenBannerForkMeOnGitHub</a></td><td rowspan="1">1579065686538</td><td rowspan="1">3546</td></tr><tr class="passedeven"><td><a href="#m5">verifyGreenButton</a></td><td rowspan="1">1579065691343</td><td rowspan="1">1131</td></tr><tr class="passedeven"><td><a href="#m6">verifyPoweredByElementalSelenium</a></td><td rowspan="1">1579065693338</td><td rowspan="1">6886</td></tr><tr class="passedeven"><td><a href="#m7">verifyRedButton</a></td><td rowspan="1">1579065701540</td><td rowspan="1">986</td></tr><tr class="passedeven"><td><a href="#m8">verifychallengingDomUI</a></td><td rowspan="1">1579065703604</td><td rowspan="1">806</td></tr></tbody>
+<table id='summary'><thead><tr><th>Class</th><th>Method</th><th>Start</th><th>Time (ms)</th></tr></thead><tbody><tr><th colspan="4">Herokuapp</th></tr></tbody><tbody id="t0"><tr><th colspan="4">Regression &#8212; failed</th></tr><tr class="failedeven"><td rowspan="1">selenium.framework.testsuite.herokuapp.ChallengingDomPage</td><td><a href="#m0">challengingDomPageLoad</a></td><td rowspan="1">1579097050318</td><td rowspan="1">453</td></tr></tbody>
 </table>
-<h2>Regression</h2><h3 id="m0">selenium.framework.testsuite.herokuapp.ChallengingDomPage#verifyBlueButton</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
-<h3 id="m1">selenium.framework.testsuite.herokuapp.ChallengingDomPage#verifyContentsOfTable</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
-<h3 id="m2">selenium.framework.testsuite.herokuapp.ChallengingDomPage#verifyDeleteLinkUnderActionColumn</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
-<h3 id="m3">selenium.framework.testsuite.herokuapp.ChallengingDomPage#verifyEditLinkUnderActionColumn</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
-<h3 id="m4">selenium.framework.testsuite.herokuapp.ChallengingDomPage#verifyGreenBannerForkMeOnGitHub</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
-<h3 id="m5">selenium.framework.testsuite.herokuapp.ChallengingDomPage#verifyGreenButton</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
-<h3 id="m6">selenium.framework.testsuite.herokuapp.ChallengingDomPage#verifyPoweredByElementalSelenium</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
-<h3 id="m7">selenium.framework.testsuite.herokuapp.ChallengingDomPage#verifyRedButton</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
-<h3 id="m8">selenium.framework.testsuite.herokuapp.ChallengingDomPage#verifychallengingDomUI</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h2>Regression</h2><h3 id="m0">selenium.framework.testsuite.herokuapp.ChallengingDomPage#challengingDomPageLoad</h3><table class="result"><tr><th>Exception</th></tr><tr><td><div class="stacktrace">java.lang.NoClassDefFoundError: javax/xml/bind/JAXBException
+	at io.restassured.config.ObjectMapperConfig.&lt;init&gt;(ObjectMapperConfig.java:49)
+	at io.restassured.config.RestAssuredConfig.&lt;init&gt;(RestAssuredConfig.java:41)
+	at io.restassured.RestAssured.&lt;clinit&gt;(RestAssured.java:420)
+	at selenium.framework.testsuite.herokuapp.ChallengingDomPage.challengingDomPageLoad(ChallengingDomPage.java:281)
+Caused by: java.lang.ClassNotFoundException: javax.xml.bind.JAXBException
+	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:602)
+	at java.base/jdk.internal.loader.ClassLoaders$AppClassLoader.loadClass(ClassLoaders.java:178)
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:521)
+	... 29 more
+... Removed 25 stack frames</div></td></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
 </body>
 </html>

@@ -7,6 +7,9 @@ import java.util.List;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
+import io.restassured.RestAssured;
+import io.restassured.response.Response;
+import io.restassured.specification.RequestSpecification;
 import selenium.framework.initializers.BaseClass;
 import selenium.framework.initializers.CommonUtils;
 import selenium.framework.initializers.Constants;
@@ -270,5 +273,17 @@ public class ChallengingDomPage extends BaseClass implements Constants {
 		}
 	}
 
+	@Test
+	public void challengingDomPageLoad() {
+		logger = extent.createTest("Challenging Dom Page Load");
+		
+		 RequestSpecification httpRequest = RestAssured.given();
+		 Response response = httpRequest.get("https://the-internet.herokuapp.com/challenging_dom");
+		 int statusCode = response.getStatusCode();
+		 if(statusCode==200)
+	    utils.infoPass("Page loaded successfully");
+        else
+        	utils.infoFail("Page not loaded");
+	}
 
 }

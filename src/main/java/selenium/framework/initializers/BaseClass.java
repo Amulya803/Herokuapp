@@ -26,6 +26,7 @@ public class BaseClass extends ExtentManager{
     }
     
     private  void initializeDriver(String browserType){
+    	//Initialize the chrome driver
         if(browserType.equalsIgnoreCase("chrome")){
             WebDriverManager.chromedriver().setup();
             driver=new ChromeDriver();
@@ -34,6 +35,7 @@ public class BaseClass extends ExtentManager{
 
     @BeforeSuite(alwaysRun = true)
     public void beforeSuite()  {
+    	//Initialized
         initializeDriver(browser);
         getDriver().manage().window().maximize();
 		
@@ -41,6 +43,7 @@ public class BaseClass extends ExtentManager{
     
     @BeforeMethod
     public void beforeMethod() {
+    	//Navigate to Challenging Dom
     	driver.navigate().to("https://the-internet.herokuapp.com/challenging_dom");
     	driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);           
     	extent = ExtentManager.getInstance();                                      
@@ -48,7 +51,8 @@ public class BaseClass extends ExtentManager{
    }
     
     @AfterSuite(alwaysRun = true) 
-    public void afterTest() { 
+    public void afterTest() {
+    	//Driver Closed
     	getDriver().quit();
         extent.flush(); 
      }

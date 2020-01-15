@@ -11,9 +11,8 @@
           <include name="beforeSuite"/>
           <include name="init"/>
           <include name="afterTest"/>
-          <include name="verifychallengingDomUI"/>
+          <include name="challengingDomPageLoad"/>
           <include name="beforeMethod"/>
-          <include name="verifyRedButton"/>
         </methods>
       </class> <!-- selenium.framework.testsuite.herokuapp.ChallengingDomPage -->
     </classes>

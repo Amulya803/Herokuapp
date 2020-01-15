@@ -7,7 +7,11 @@
 	</listeners>
 	 <test name="Regression">
 		<classes>
-			<class name="selenium.framework.testsuite.herokuapp.ChallengingDomPage"/>
+			<class name="selenium.framework.testsuite.herokuapp.ChallengingDomPage">
+			<methods>
+			<include name="challengingDomPageLoad"/>
+			</methods>
+			</class>
 		</classes>
 	</test>
 </suite>

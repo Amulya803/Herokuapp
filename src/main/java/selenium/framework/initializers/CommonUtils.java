@@ -18,7 +18,7 @@ import org.testng.Assert;
 import com.aventstack.extentreports.Status;
 
 public class CommonUtils extends BaseClass {
-	private WebDriverWait wait;
+	//
 
 	/**
 	 * @implNote this method is written to find the webElement.
@@ -218,7 +218,7 @@ public class CommonUtils extends BaseClass {
 		long startTime = System.currentTimeMillis() / 1000;
 		long endTime = startTime + seconds;
 		do {
-			System.out.println("wait explicit....");
+			infoPass("wait explicit....");
 		} while (endTime >= System.currentTimeMillis() / 1000);
 	}
 
@@ -303,6 +303,7 @@ public class CommonUtils extends BaseClass {
 	 * @param locator
 	 */
 	public void waitUntilVisibilityOfElement(By locator) {
+		WebDriverWait wait;
 		wait = new WebDriverWait(getDriver(), 60);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
 		infoPass("waiting for element to be visible " + locator);

@@ -23,6 +23,11 @@ public class ChallengingDomPageObj extends BaseClass implements Constants {
 	String[] expectedTableHeaders = { "Lorem", "Ipsum", "Dolor", "Sit", "Amet", "Diceret", "Action" };
 	String[] expectedColumnValues = { "Iuvaret", "Apeirian", "Adipisci", "Definiebas", "Consequuntur", "Phaedrum" };
 	
+	/**
+	 * @implNote this method is written to verify the column text
+	 * @param columnName
+	 * @param colNum
+	 */
 	public void verifyColumnText(String columnName, int colNum) {
 		List<String> columnValues;
 		List<String> actualRowValue = new ArrayList<>();
